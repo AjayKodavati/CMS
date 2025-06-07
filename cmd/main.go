@@ -5,7 +5,8 @@ import (
 
 	"github.com/AjayKodavati/CMS/config"
 	"github.com/AjayKodavati/CMS/db"
-	"github.com/AjayKodavati/CMS/repository"
+	"github.com/AjayKodavati/CMS/router"
+	"github.com/AjayKodavati/CMS/server"
 )
 
 
@@ -16,12 +17,13 @@ func main() {
 		log.Fatal("Error loading config:", err)
 	}
 
-	err = db.InitDB()
+	pool, err := db.InitDB()
 	if err != nil {
 		log.Fatal("Error initializing database:", err)
 	}
-	defer db.Pool.Close()
-
-	repositoryService := repository.SetUpDBRepositories(db.Pool)
+	defer pool.Close()
 	
+	server := server.NewServer(pool)
+	router.SetupRouter(server)
+
 }

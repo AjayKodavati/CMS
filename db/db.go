@@ -9,13 +9,10 @@ import (
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
-var Pool *pgxpool.Pool
-
-
-func InitDB() error {
+func InitDB() (*pgxpool.Pool, error) {
 	dbURL := os.Getenv("DATABASE_URL")
 	if dbURL == "" {
-		return fmt.Errorf("database URL not set in environment variables")
+		return nil, fmt.Errorf("database URL not set in environment variables")
 	}
 
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
@@ -23,10 +20,9 @@ func InitDB() error {
 
 	pool, err := pgxpool.New(ctx, dbURL)
 	if err != nil {
-		return fmt.Errorf("unable to connect to database: %v", err)
+		return nil, fmt.Errorf("unable to connect to database: %v", err)
 	}
-	Pool = pool
 	fmt.Println("Database connection established successfully")
-	return nil
+	return pool, nil
 }
 

@@ -7,6 +7,7 @@ import (
 )
 
 type CategoriesRepository interface {
+	CreateCategory(ctx context.Context, categoryName string) (int, error)
 	GetCategoryIDByName(ctx context.Context, categoryName string) (int, error)
 }
 
@@ -31,4 +32,13 @@ func (c *CategoriesRepositoryService) GetCategoryIDByName(ctx context.Context, c
 		return 0, err // Return the error if something else went wrong
 	}
 	return categoryID, nil
+}
+
+func (c *CategoriesRepositoryService) CreateCategory(ctx context.Context, categoryName string) (error) {
+	query := `INSERT INTO categories (category_name) VALUES ($1) RETURNING category_id`
+	_, err := c.pool.Exec(ctx, query, categoryName)
+	if err != nil {
+		return err
+	}
+	return nil
 }
