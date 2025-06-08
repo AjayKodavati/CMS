@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"os"
 
 	"github.com/AjayKodavati/CMS/config"
 	"github.com/AjayKodavati/CMS/db"
@@ -25,5 +26,6 @@ func main() {
 	
 	server := server.NewServer(pool)
 	router.SetupRouter(server)
-
+	port := os.Getenv("PORT")
+	server.Start(port)
 }

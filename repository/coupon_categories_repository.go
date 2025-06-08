@@ -14,7 +14,7 @@ type CouponCategoriesRepositoryService struct {
 	pool *pgxpool.Pool
 }
 
-func NewCouponCategoriesRepository(pool *pgxpool.Pool) *CouponCategoriesRepositoryService {
+func NewCouponCategoriesRepository(pool *pgxpool.Pool) CouponCategoriesRepository {
 	return &CouponCategoriesRepositoryService{
 		pool: pool,
 	}

@@ -5,12 +5,12 @@ import (
 )
 
 func SetUpCouponRoutes(server *server.Server) {
-	couponGroup := server.Router.Group("/coupons")
-	couponController := &controller.CouponController{
-		Repositories: server.RepositoryService,
-	}
+	// couponGroup := server.Router.Group("/coupons")
+	// couponController := &controller.CouponController{
+	// 	Repositories: server.RepositoryService,
+	// }
 
-	couponGroup.POST("/applicable", couponController.ApplicableCoupons)
-	couponGroup.POST("/validate", couponController.ValidateCoupon)
+	// couponGroup.POST("/applicable", couponController.ApplicableCoupons)
+	// couponGroup.POST("/validate", couponController.ValidateCoupon)
 	
 }

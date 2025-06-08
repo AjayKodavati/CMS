@@ -9,7 +9,7 @@ CREATE TABLE categories (
 
 CREATE TABLE coupons (
     coupon_id SERIAL PRIMARY KEY,
-    coupoun_code VARCHAR(50) NOT NULL UNIQUE,
+    coupon_code VARCHAR(50) NOT NULL UNIQUE,
     discount_type discount_type_enum NOT NULL,
     discount_value DECIMAL(10, 2) NOT NULL,
     terms_and_conditions TEXT,

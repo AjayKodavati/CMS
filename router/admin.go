@@ -13,21 +13,21 @@ func SetUpAdminRoutes(server *server.Server) {
 
 	couponGroup := adminGroup.Group("/coupon")
 	{
-		couponGroup.DELETE("/delete/:couponID", adminController.DeleteCoupon)
-		couponGroup.PUT("/update/:couponID", adminController.UpdateCoupon)
+		couponGroup.DELETE("/delete/:couponCode", adminController.DeleteCoupon)
+		couponGroup.PUT("/update", adminController.UpdateCoupon)
 		couponGroup.GET("/:couponID", adminController.GetCouponByID)
 		couponGroup.POST("/create", adminController.CreateCoupon)
 	}
 
-	categoryGroup := adminGroup.Group("/category")
-	{
-		categoryGroup.POST("/create", adminController.CreateCategory)	
-	}
+	// categoryGroup := adminGroup.Group("/category")
+	// {
+	// 	categoryGroup.POST("/create", adminController.CreateCategory)	
+	// }
 
-	medicineGroup := adminGroup.Group("/medicine")
-	{
-		medicineGroup.POST("/create", adminController.CreateMedicineWithCategory)
-		medicineGroup.PUT("/update/:medicineID", adminController.UpdateMedicine)
-		medicineGroup.DELETE("/delete/:medicineID", adminController.DeleteMedicine)
-	}
+	// medicineGroup := adminGroup.Group("/medicine")
+	// {
+	// 	medicineGroup.POST("/create", adminController.CreateMedicineWithCategory)
+	// 	medicineGroup.PUT("/update/:medicineID", adminController.UpdateMedicine)
+	// 	medicineGroup.DELETE("/delete/:medicineID", adminController.DeleteMedicine)
+	// }
 }

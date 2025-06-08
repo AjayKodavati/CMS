@@ -7,7 +7,7 @@ import (
 )
 
 type CategoriesRepository interface {
-	CreateCategory(ctx context.Context, categoryName string) (int, error)
+	CreateCategory(ctx context.Context, categoryName string) (error)
 	GetCategoryIDByName(ctx context.Context, categoryName string) (int, error)
 }
 
@@ -15,7 +15,7 @@ type CategoriesRepositoryService struct {
 	pool *pgxpool.Pool
 }
 
-func NewCategoriesRepository(pool *pgxpool.Pool) *CategoriesRepositoryService {
+func NewCategoriesRepository(pool *pgxpool.Pool) CategoriesRepository {
 	return &CategoriesRepositoryService{
 		pool: pool,
 	}

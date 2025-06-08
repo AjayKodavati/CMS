@@ -21,7 +21,7 @@ type MedicineRepositoryService struct{
 	pool *pgxpool.Pool
 }
 
-func NewMedicineRepository(pool *pgxpool.Pool) *MedicineRepositoryService {
+func NewMedicineRepository(pool *pgxpool.Pool) MedicineRepository {
 	return &MedicineRepositoryService{pool: pool}
 }
 

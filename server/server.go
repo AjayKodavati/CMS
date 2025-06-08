@@ -22,6 +22,6 @@ func NewServer(pool *pgxpool.Pool) *Server {
 }
 
 func (s *Server) Start(port string)  {
-	s.Router.Run(port)
+	s.Router.Run(fmt.Sprintf(":%s", port))
 	fmt.Printf("Server is running on port %s\n", port)
 }

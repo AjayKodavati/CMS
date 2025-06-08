@@ -6,5 +6,5 @@ import (
 
 
 func SetupRouter(server *server.Server) {
-	
+	SetUpAdminRoutes(server)
 }

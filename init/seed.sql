@@ -13,7 +13,7 @@ INSERT INTO medicienes (name, category_id) VALUES
 
 -- Insert coupons
 INSERT INTO coupons (
-    coupoun_code, discount_type, discount_value,
+    coupon_code, discount_type, discount_value,
     terms_and_conditions, usage_type, valid_from, valid_until, minimum_purchase_amount
 ) VALUES
 ('PAIN10', 'percentage', 10.00, 'Applicable to pain relief meds only.', 'multi_use', NOW(), NOW() + INTERVAL '30 days', 100.00),
