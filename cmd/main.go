@@ -26,6 +26,7 @@ func main() {
 	
 	server := server.NewServer(pool)
 	router.SetupRouter(server)
+	
 	port := os.Getenv("PORT")
 	server.Start(port)
 }

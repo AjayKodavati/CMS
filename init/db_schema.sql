@@ -1,10 +1,9 @@
-
 CREATE TYPE discount_type_enum AS ENUM ('percentage', 'fixed_amount');
 CREATE TYPE usage_type_enum AS ENUM ('single_use', 'multi_use');
 
 CREATE TABLE categories (
     category_id SERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL UNIQUE
+    category_name VARCHAR(100) NOT NULL UNIQUE
 );
 
 CREATE TABLE coupons (
@@ -19,20 +18,20 @@ CREATE TABLE coupons (
     minimum_purchase_amount DECIMAL(10, 2)
 );
 
-CREATE TABLE medicienes (
+CREATE TABLE medicines (
     medicine_id SERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    category_id INT REFERENCES categories(category_id)
+    medicine_name VARCHAR(100) NOT NULL,
+    category_id INT REFERENCES categories(category_id) ON DELETE CASCADE
 );
 
 CREATE TABLE coupon_medicines (
-    coupon_id INT REFERENCES coupons(coupon_id),
-    medicine_id INT REFERENCES medicienes(medicine_id),
+    coupon_id INT REFERENCES coupons(coupon_id) ON DELETE CASCADE,
+    medicine_id INT REFERENCES medicines(medicine_id) ON DELETE CASCADE,
     PRIMARY KEY (coupon_id, medicine_id)
 );
 
 CREATE TABLE coupon_categories (
-    coupon_id INT REFERENCES coupons(coupon_id),
-    category_id INT REFERENCES categories(category_id),
+    coupon_id INT REFERENCES coupons(coupon_id) ON DELETE CASCADE,
+    category_id INT REFERENCES categories(category_id) ON DELETE CASCADE,
     PRIMARY KEY (coupon_id, category_id)
 );

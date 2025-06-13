@@ -15,12 +15,17 @@ type Coupon struct {
 }
 
 type Medicine struct {
-	MedicineID   int
-	MedicineName string
-	CategoryID   int
+	MedicineID   int    `json:"medicineID"`
+	MedicineName string `json:"medicineName"`
+	CategoryID   int    `json:"categoryID"`
 }
 
 type CouponMedicine struct {
 	CouponID   int
 	MedicineID int
+}
+
+type Category struct {
+	CategoryID   int    `json:"categoryID"`
+	CategoryName string `json:"categoryName"`
 }
